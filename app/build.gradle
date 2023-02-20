@@ -54,4 +54,11 @@ dependencies {
 
     //круглое фото
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //pablo picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    implementation 'me.relex:circleindicator:2.1.6'
 }

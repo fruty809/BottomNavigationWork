@@ -25,23 +25,35 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        navController.navigate(HomeFragmentDirections.actionNavigationHomeToOnBoardingFragment())
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.taskFragment,R.id.profile            )
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_notifications,
+                R.id.taskFragment,
+                R.id.profile
+            )
+        )
+        val bottomNavFragments = arrayListOf(
+            R.id.navigation_home,
+            R.id.navigation_dashboard,
+            R.id.navigation_notifications,
+            R.id.taskFragment,
+            R.id.profile
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navController.addOnDestinationChangedListener(object : NavController.OnDestinationChangedListener{
-            override fun onDestinationChanged(
-                controller: NavController,
-                destination: NavDestination,
-                arguments: Bundle?
-            ) {
-                navView.isVisible = destination.id != R.id.taskFragment
-            }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
 
-        })
+            navView.isVisible = bottomNavFragments.contains(destination.id)
+
+            if (destination.id == R.id.onBoardingFragment){
+                supportActionBar?.hide()
+            }else{
+                supportActionBar?.show()
+            }
+        }
         navView.setupWithNavController(navController)
     }
 }
