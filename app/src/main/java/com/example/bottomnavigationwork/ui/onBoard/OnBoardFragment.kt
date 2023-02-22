@@ -1,49 +1,42 @@
 package com.example.bottomnavigationwork.ui.onBoard
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.example.bottomnavigationwork.R
-import com.example.bottomnavigationwork.databinding.ItemTaskBinding
-import com.example.bottomnavigationwork.ui.model.Task
+import androidx.navigation.Navigation.findNavController
+import com.example.bottomnavigationwork.databinding.FragmentOnBoardingBinding
+import com.example.bottomnavigationwork.ui.onBoard.adapter.OnBoardingAdapter
+import me.relex.circleindicator.CircleIndicator3
 
 
-class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
-    private val data = arrayListOf<Task>()
+class OnBoardingFragment : Fragment() {
 
+    private lateinit var binding: FragmentOnBoardingBinding
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addTAsk(task: Task){
-        data.add(0,task)
-        notifyDataSetChanged()
-    }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        return TaskViewHolder(
-            ItemTaskBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(data[position])
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
-    }
-
-    inner class TaskViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(task: Task) {
-            binding.title.text = task.title
-            binding.description.text = task.description
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        var adapter = OnBoardingAdapter(){
+            findNavController() avController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToNavigationHome())
         }
+        binding.viewPager.adapter = adapter
+        indicator()
 
     }
+
+    private fun indicator() {
+        val indicator: CircleIndicator3 = binding.indicator
+        val viewPager = binding.viewPager
+        indicator.setViewPager(viewPager)
+    }
+
 }

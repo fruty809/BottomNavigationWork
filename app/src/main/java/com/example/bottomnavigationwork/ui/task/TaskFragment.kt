@@ -14,6 +14,7 @@ import com.example.bottomnavigationwork.ui.home.HomeFragment
 import com.example.bottomnavigationwork.ui.model.Task
 
 class TaskFragment : Fragment() {
+
     private lateinit var binding: FragmentTaskBinding
 
     override fun onCreateView(
@@ -27,10 +28,13 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSave.setOnClickListener {
-            val task = Task(binding.etTitle.text.toString(), binding.etDesc.text.toString()
+            val task = Task(
+                binding.etTitle.text.toString(),
+                binding.etDesc.text.toString()
             )
-            setFragmentResult(HomeFragment.RESULT_REQUEST_KEY, bundleOf(HomeFragment.TASK_KEY to task))
+            setFragmentResult(HomeFragment.RESULT_KEY, bundleOf(HomeFragment.TASK_KEY to task))
             findNavController().navigateUp()
         }
     }
+
 }

@@ -8,24 +8,23 @@ import com.example.bottomnavigationwork.databinding.ItemOnBoardingBinding
 import com.example.bottomnavigationwork.ui.model.OnBoard
 import com.example.bottomnavigationwork.utils.loadImage
 
-class OnBoardingAdaptor(private val onStartClick: () -> Unit) :
-    RecyclerView.Adapter<OnBoardingAdaptor.OnBoardingViewHolder>() {
+class OnBoardingAdapter(private val onStartClick:()->Unit) : RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 
-    private val data = arrayListOf<OnBoard>(
+    val data = arrayListOf<OnBoard>(
         OnBoard(
-            "Test1",
-            "Desc1",
-            "https://cutewallpaper.org/21/task/How-to-Instantly-Create-Shareable-Task-Lists-No-Signups-.jpg"
+            "Availability",
+            "Our app is always near you",
+            "https://img.freepik.com/free-vector/hand-drawn-business-planning-with-task-list_23-2149164275.jpg"
         ),
         OnBoard(
-            "Test2",
-            "Desc2",
-            "https://cutewallpaper.org/21/task/How-to-Instantly-Create-Shareable-Task-Lists-No-Signups-.jpg"
+            "Productivity",
+            "Your day becomes planned and productive",
+            "https://img.freepik.com/free-vector/accept-tasks-concept-illustration_114360-4492.jpg"
         ),
         OnBoard(
-            "Test3",
-            "Desc3",
-            "https://cutewallpaper.org/21/task/How-to-Instantly-Create-Shareable-Task-Lists-No-Signups-.jpg"
+            "Made by those who use",
+            "Made with love!",
+            "https://miro.medium.com/max/1400/1*8ygFKYb0Yo6Hc-vnScGA9A.png"
         )
     )
 
@@ -43,17 +42,11 @@ class OnBoardingAdaptor(private val onStartClick: () -> Unit) :
         holder.bind(data[position])
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    override fun getItemCount() = data.size
 
     inner class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(onBoard: OnBoard) {
-
-            binding.btnStart.isVisible = adapterPosition == 2
-            binding.btnSkip.isVisible = adapterPosition != 2
 
             binding.btnStart.setOnClickListener {
                 onStartClick()
@@ -61,10 +54,13 @@ class OnBoardingAdaptor(private val onStartClick: () -> Unit) :
             binding.btnSkip.setOnClickListener {
                 onStartClick()
             }
-            binding.tvTitle.text = onBoard.title
-            binding.tvDesk.text = onBoard.desc
-            binding.imgBoard.loadImage(onBoard.image.toString())
 
+            binding.btnStart.isVisible = adapterPosition == 2
+            binding.btnSkip.isVisible = adapterPosition != 2
+
+            binding.tittle.text = onBoard.title
+            binding.description.text = onBoard.desc
+            binding.ivBoard.loadImage(onBoard.image.toString())
         }
 
     }

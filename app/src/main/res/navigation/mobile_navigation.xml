@@ -13,8 +13,8 @@
         <action
             android:id="@+id/action_navigation_home_to_onBoardingFragment"
             app:destination="@id/onBoardingFragment"
-            app:popUpTo="@id/mobile_navigation"
-            app:popUpToInclusive="true"/>
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -34,19 +34,19 @@
         android:label="Task"
         tools:layout="@layout/fragment_task" />
     <fragment
-        android:id="@+id/profile"
+        android:id="@+id/profileFragment"
         android:name="com.example.bottomnavigationwork.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.example.bot.ui.OnBoard.OnBoardingFragment"
+        android:name="com.example.bottomnavigationwork.ui.onBoard.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" >
         <action
             android:id="@+id/action_onBoardingFragment_to_navigation_home"
             app:destination="@id/navigation_home"
-            app:popUpTo="@id/mobile_navigation"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@+id/mobile_navigation"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
