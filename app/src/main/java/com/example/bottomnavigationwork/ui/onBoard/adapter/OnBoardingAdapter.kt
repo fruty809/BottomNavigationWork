@@ -1,12 +1,10 @@
-package com.example.bottomnavigationwork.ui.onBoard.adapter
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bottomnavigationwork.databinding.ItemOnBoardingBinding
 import com.example.bottomnavigationwork.ui.model.OnBoard
 import com.example.bottomnavigationwork.utils.loadImage
+import com.geektech.taskmanager.databinding.ItemOnBoardingBinding
 
 class OnBoardingAdapter(private val onStartClick:()->Unit) : RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 

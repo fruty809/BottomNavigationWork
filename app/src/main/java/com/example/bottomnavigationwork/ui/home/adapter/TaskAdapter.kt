@@ -1,22 +1,18 @@
-package com.example.bottomnavigationwork.ui.home.adapter
-
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.bottomnavigationwork.databinding.ItemTaskBinding
 import com.example.bottomnavigationwork.ui.model.Task
+import com.geektech.taskmanager.databinding.ItemTaskBinding
 
-class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val onClick:(pos : Int) -> Unit): RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     private val data = arrayListOf<Task>()
 
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun addTAsk(task: Task){
-        data.add(0,task)
+    fun addTask(tasks: List<Task>) {
+        data.clear()
+        data.addAll(tasks)
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(
             ItemTaskBinding.inflate(
@@ -32,13 +28,19 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return data.count()
     }
 
-    inner class TaskViewHolder(private val binding: ItemTaskBinding) : ViewHolder(binding.root) {
+    inner class TaskViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
-            binding.title.text = task.title
-            binding.description.text = task.description
+            with(binding) {
+                title.text = task.title
+                description.text = task.description
+                itemView.setOnLongClickListener {
+                    onClick(adapterPosition)
+                    return@setOnLongClickListener false
+                }
+            }
         }
 
     }
