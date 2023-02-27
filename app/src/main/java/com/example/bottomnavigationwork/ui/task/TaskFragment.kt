@@ -1,17 +1,12 @@
-package com.example.bottomnavigationwork.ui.task
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.bottomnavigationwork.R
-import com.example.bottomnavigationwork.databinding.FragmentTaskBinding
-import com.example.bottomnavigationwork.ui.home.HomeFragment
+import com.example.bottomnavigationwork.App
 import com.example.bottomnavigationwork.ui.model.Task
+import com.geektech.taskmanager.databinding.FragmentTaskBinding
 
 class TaskFragment : Fragment() {
 
@@ -29,10 +24,10 @@ class TaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSave.setOnClickListener {
             val task = Task(
-                binding.etTitle.text.toString(),
-                binding.etDesc.text.toString()
+                title = binding.edTittle.text.toString(),
+                description = binding.etDesc.text.toString()
             )
-            setFragmentResult(HomeFragment.RESULT_KEY, bundleOf(HomeFragment.TASK_KEY to task))
+            App.db.taskDao().insert(task)
             findNavController().navigateUp()
         }
     }

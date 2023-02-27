@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationwork.App
 import com.example.bottomnavigationwork.ui.model.Task
 import com.geektech.taskmanager.R
@@ -40,17 +42,18 @@ class HomeFragment : Fragment() {
         }
         setData()
         binding.recyclerView.adapter = adapter
+        onSwipe()
 
     }
     private fun onLongClick(position: Int) {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("are you sure to delete is")
+        builder.setTitle("Are you sure to delete?")
         builder.setMessage("If you delete this line, it cannot be restored!")
-        builder.setPositiveButton("Да") { dialogInterface: DialogInterface, i: Int ->
+        builder.setPositiveButton("Yes") { _: DialogInterface, _: Int ->
             App.db.taskDao().delete(task[position])
             setData()
         }
-        builder.setNegativeButton("Нет") { dialogInterface: DialogInterface, i: Int ->
+        builder.setNegativeButton("No") { _: DialogInterface, _: Int ->
         }
         builder.show()
     }
@@ -59,7 +62,34 @@ class HomeFragment : Fragment() {
         task = App.db.taskDao().getAll()
         adapter.addTask(task)
     }
+    private fun onSwipe() {
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val pos = viewHolder.adapterPosition
+
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Are you sure to delete?")
+                builder.setMessage("If you delete this line, it cannot be restored!")
+                builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+                    App.db.taskDao().delete(task[pos])
+                    setData()
+                }
+                builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+                }
+                builder.show()
+            }
+
+
+        }).attachToRecyclerView(binding.recyclerView)
+    }
     companion object {
         const val RESULT_KEY = "request key"
         const val TASK_KEY = "task key"
