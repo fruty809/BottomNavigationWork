@@ -2,11 +2,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bottomnavigationwork.ui.model.OnBoard
+import com.example.bottomnavigationwork.model.OnBoard
 import com.example.bottomnavigationwork.utils.loadImage
 import com.geektech.taskmanager.databinding.ItemOnBoardingBinding
 
-class OnBoardingAdapter(private val onStartClick:()->Unit) : RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
+class OnBoardingAdapter(private val onStartClick: () -> Unit) :
+    RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
 
     val data = arrayListOf<OnBoard>(
         OnBoard(

@@ -1,3 +1,6 @@
+package com.example.bottomnavigationwork.ui.home
+
+import TaskAdapter
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -9,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationwork.App
-import com.example.bottomnavigationwork.ui.model.Task
+import com.example.bottomnavigationwork.model.Task
 import com.geektech.taskmanager.R
 import com.geektech.taskmanager.databinding.FragmentHomeBinding
 
@@ -18,7 +21,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: TaskAdapter
-    private lateinit var task  : List<Task>
+    private lateinit var task: List<Task>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +32,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -45,6 +48,7 @@ class HomeFragment : Fragment() {
         onSwipe()
 
     }
+
     private fun onLongClick(position: Int) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Are you sure to delete?")
@@ -55,19 +59,20 @@ class HomeFragment : Fragment() {
         }
         builder.setNegativeButton("No") { _: DialogInterface, _: Int ->
         }
-        builder.show()
+        builder.create().show()
     }
 
     private fun setData() {
         task = App.db.taskDao().getAll()
         adapter.addTask(task)
     }
+
     private fun onSwipe() {
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
+                target: RecyclerView.ViewHolder,
             ): Boolean {
                 return false
             }
@@ -81,8 +86,10 @@ class HomeFragment : Fragment() {
                 builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
                     App.db.taskDao().delete(task[pos])
                     setData()
+                    dialogInterface.dismiss()
                 }
                 builder.setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.dismiss()
                 }
                 builder.show()
             }
@@ -90,6 +97,7 @@ class HomeFragment : Fragment() {
 
         }).attachToRecyclerView(binding.recyclerView)
     }
+
     companion object {
         const val RESULT_KEY = "request key"
         const val TASK_KEY = "task key"

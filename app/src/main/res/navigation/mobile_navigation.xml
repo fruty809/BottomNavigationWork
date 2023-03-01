@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.example.bottomnavigationwork.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_onBoardingFragment"
             app:destination="@id/onBoardingFragment"
@@ -42,11 +42,11 @@
         android:id="@+id/onBoardingFragment"
         android:name="com.example.bottomnavigationwork.ui.onBoard.OnBoardingFragment"
         android:label="fragment_on_boarding"
-        tools:layout="@layout/fragment_on_boarding" >
+        tools:layout="@layout/fragment_on_boarding">
         <action
             android:id="@+id/action_onBoardingFragment_to_navigation_home"
             app:destination="@id/navigation_home"
             app:popUpTo="@+id/mobile_navigation"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

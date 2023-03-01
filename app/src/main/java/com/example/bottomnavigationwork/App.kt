@@ -2,9 +2,11 @@ package com.example.bottomnavigationwork
 
 import android.app.Application
 import androidx.room.Room
-import com.example.bottomnavigationwork.ui.data.local.room.AppDataBase
+import com.example.bottomnavigationwork.data.local.room.AppDataBase
 
-class App: Application() {
+class App : Application() {
+
+
     override fun onCreate() {
         super.onCreate()
         db = Room.databaseBuilder(
@@ -12,7 +14,9 @@ class App: Application() {
             AppDataBase::class.java, "database-name"
         ).allowMainThreadQueries().build()
     }
-    companion object{
+
+
+    companion object {
         lateinit var db: AppDataBase
 
     }

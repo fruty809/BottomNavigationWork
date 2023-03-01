@@ -1,10 +1,11 @@
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bottomnavigationwork.ui.model.Task
+import com.example.bottomnavigationwork.model.Task
 import com.geektech.taskmanager.databinding.ItemTaskBinding
 
-class TaskAdapter(private val onClick:(pos : Int) -> Unit): RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val onClick: (pos: Int) -> Unit) :
+    RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     private val data = arrayListOf<Task>()
 
     fun addTask(tasks: List<Task>) {
@@ -31,7 +32,8 @@ class TaskAdapter(private val onClick:(pos : Int) -> Unit): RecyclerView.Adapter
         return data.count()
     }
 
-    inner class TaskViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TaskViewHolder(private val binding: ItemTaskBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             with(binding) {
                 title.text = task.title

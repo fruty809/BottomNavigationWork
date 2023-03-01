@@ -8,8 +8,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.bottomnavigationwork.databinding.ActivityMainBinding
-import com.example.bottomnavigationwork.ui.data.local.Pref
+import com.example.bottomnavigationwork.ui.home.HomeFragmentDirections
+import com.geektech.taskmanager.R
+import com.geektech.taskmanager.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,14 +38,15 @@ class MainActivity : AppCompatActivity() {
         val bottomNavFragments = arrayListOf(
             R.id.navigation_home,
             R.id.navigation_dashboard,
-            R.id.navigation_notifications
+            R.id.navigation_notifications,
+            R.id.profileFragment
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             navView.isVisible = bottomNavFragments.contains(destination.id)
-            if (destination.id == R.id.onBoardingFragment){
+            if (destination.id == R.id.onBoardingFragment) {
                 supportActionBar?.hide()
-            }else{
+            } else {
                 supportActionBar?.show()
             }
         }

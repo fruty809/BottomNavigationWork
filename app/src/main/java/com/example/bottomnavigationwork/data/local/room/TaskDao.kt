@@ -1,7 +1,7 @@
-package com.example.bottomnavigationwork.ui.data.local.room
+package com.example.bottomnavigationwork.data.local.room
 
 import androidx.room.*
-import com.example.bottomnavigationwork.ui.model.Task
+import com.example.bottomnavigationwork.model.Task
 
 @Dao
 interface TaskDao {

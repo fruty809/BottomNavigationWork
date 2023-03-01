@@ -1,10 +1,13 @@
+package com.example.bottomnavigationwork.ui.onBoard
+
+import OnBoardingAdapter
+import Pref
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.bottomnavigationwork.ui.onBoard.OnBoardingFragmentDirections
 import com.geektech.taskmanager.databinding.FragmentOnBoardingBinding
 import me.relex.circleindicator.CircleIndicator3
 
@@ -14,7 +17,7 @@ class OnBoardingFragment : Fragment() {
     private lateinit var pref: Pref
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
         return binding.root
@@ -23,7 +26,7 @@ class OnBoardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pref = Pref(requireContext())
-        val adapter = OnBoardingAdapter(){
+        val adapter = OnBoardingAdapter() {
             pref.savUserSeen()
             findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToNavigationHome())
         }
