@@ -11,14 +11,15 @@ interface TaskDao {
     fun getAll(): List<Task>
 
 
-    /*СОХРАНЯЕТ task*/
     @Insert
     fun insert(task: Task)
 
-    /* УДАЛЯЕТ task*/
+
     @Delete
     fun delete(task: Task)
 
     @Update
     fun update(task: Task)
+
+
 }

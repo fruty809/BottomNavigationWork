@@ -1,7 +1,7 @@
 package com.example.bottomnavigationwork.ui.onBoard
 
 import OnBoardingAdapter
-import Pref
+import com.example.bottomnavigationwork.data.local.Pref
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
