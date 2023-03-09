@@ -3,16 +3,17 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
-    namespace 'com.geektech.taskmanager'
-    compileSdk 33
+    namespace 'com.example.bottomnavigationwork'
+    compileSdk 32
 
     defaultConfig {
-        applicationId "com.geektech.taskmanager"
+        applicationId "com.example.bottomnavigationwork"
         minSdk 24
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -47,15 +48,23 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-firestore:24.4.4'
+    implementation 'com.google.android.gms:play-services-base:18.2.0'
+    implementation 'com.google.android.gms:play-services-basement:18.1.0'
+    implementation 'com.google.firebase:firebase-auth-common:9.8.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+
     // Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-    //Picasso
-    implementation 'com.squareup.picasso:picasso:2.8'
 
     //Circle Indicator
     implementation 'me.relex:circleindicator:2.1.6'
@@ -67,5 +76,4 @@ dependencies {
 
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
-
 }
