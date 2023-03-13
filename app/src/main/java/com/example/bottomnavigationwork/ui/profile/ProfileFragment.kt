@@ -15,8 +15,7 @@ import com.example.bottomnavigationwork.R
 import com.example.bottomnavigationwork.data.local.Pref
 import com.example.bottomnavigationwork.databinding.FragmentProfileBinding
 import com.example.bottomnavigationwork.utils.loadImage
-import com.geektech.taskmanager.databinding.FragmentProfileBinding
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 
 class ProfileFragment : Fragment() {
     private lateinit var auth: Firebase
@@ -39,6 +38,7 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()

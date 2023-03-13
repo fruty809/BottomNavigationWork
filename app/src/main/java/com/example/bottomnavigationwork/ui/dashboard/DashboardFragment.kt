@@ -18,7 +18,8 @@ class DashboardFragment : Fragment() {
     private lateinit var db: FirebaseFirestore
 
 
-
+    // This property is only valid between onCreateView and
+    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -28,7 +29,6 @@ class DashboardFragment : Fragment() {
     ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        return root
         return binding.root
     }
 

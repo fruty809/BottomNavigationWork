@@ -1,9 +1,10 @@
 package com.example.bottomnavigationwork
 
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -11,10 +12,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.bottomnavigationwork.data.local.Pref
 import com.example.bottomnavigationwork.databinding.ActivityMainBinding
 import com.example.bottomnavigationwork.ui.home.HomeFragmentDirections
-import com.geektech.taskmanager.R
-import com.geektech.taskmanager.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -60,5 +60,10 @@ class MainActivity : AppCompatActivity() {
             }else supportActionBar?.show()
         }
         navView.setupWithNavController(navController)
+
+        FirebaseMessaging.getInstance().token.addOnSuccessListener {
+            Log.d("aa", it.toString())
+        }
+
     }
 }

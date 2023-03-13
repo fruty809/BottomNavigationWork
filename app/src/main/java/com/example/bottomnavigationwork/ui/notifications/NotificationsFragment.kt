@@ -14,9 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 class NotificationsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var db: FirebaseFirestore
     private val adapter = QuoteAdapter()
@@ -28,7 +25,6 @@ class NotificationsFragment : Fragment() {
     ): View {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        return root
         return binding.root
     }
 
